@@ -21,6 +21,7 @@ def check_location(request):
         obj = CheckLocation()
         for k, v in req.items():
             setattr(obj, k, v)
+        obj.create_at = datetime.datetime.now()
         obj.save()
         obj.refresh_from_db()
         return JsonResponse(obj.to_dict(), safe=False)

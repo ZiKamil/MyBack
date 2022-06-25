@@ -29,6 +29,7 @@ class CheckLocation(models.Model):
     city         = models.CharField(max_length=200, blank=True)
     region       = models.CharField(max_length=200, blank=True)
     timezone     = models.CharField(max_length=200, blank=True)
+    create_at    = models.DateTimeField(default=datetime.datetime.now())
 
     def to_dict(self):
         return {
@@ -39,5 +40,6 @@ class CheckLocation(models.Model):
             "country"      : self.country,
             "city"         : self.city,
             "region"       : self.region,
-            "timezone"     : self.timezone
+            "timezone"     : self.timezone,
+            "create_at"     : self.create_at
         }
