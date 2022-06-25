@@ -27,6 +27,6 @@ def check_location(request):
         timezone     = str(request.GET.get('timezone', 0))
         obj = CheckLocation.objects.create(name=name, longitude=longitude, width=width, width_window=width_window,
                                            country=country, city=city, region=region, timezone=timezone,
-                                           last_activity=datetime.datetime.now())
+                                           create_at=datetime.datetime.now())
         return JsonResponse(obj.to_dict(), safe=False)
 
