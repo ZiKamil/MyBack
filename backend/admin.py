@@ -7,7 +7,7 @@ class CheckTimeAdmin(admin.ModelAdmin):
 
 
 class CheckLocationAdmin(admin.ModelAdmin):
-    list_display = ("name","longitude","width","width_window","country","city","region","timezone","create_at")
+    list_display = ("name", "longitude", "width", "width_window", "country", "city","region","timezone","create_at")
 
 
 admin.site.register(CheckTime, CheckTimeAdmin)
