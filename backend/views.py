@@ -13,4 +13,16 @@ def count_down(request):
         model = [CheckTime.objects.filter(name=req['name']).first().to_dict_answer()]
         return JsonResponse(model, safe=False)
 
+
+@csrf_exempt
+def check_location(request):
+    if request.method == "POST":
+        req = json.loads(request.body)
+        obj = CheckLocation()
+        for k, v in req.items():
+            setattr(obj, k, v)
+        obj.save()
+        obj.refresh_from_db()
+        return JsonResponse(obj.to_dict(), safe=False)
+
 # Create your views here.
