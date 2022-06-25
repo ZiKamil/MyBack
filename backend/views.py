@@ -17,14 +17,14 @@ def count_down(request):
 @csrf_exempt
 def check_location(request):
     if request.method == "GET":
-        name = int(request.GET.get('name', 0))
-        longitude = int(request.GET.get('longitude', 0))
-        width = int(request.GET.get('width', 0))
-        width_window = int(request.GET.get('width_window', 0))
-        country = int(request.GET.get('country', 0))
-        city = int(request.GET.get('city', 0))
-        region = int(request.GET.get('region', 0))
-        timezone = int(request.GET.get('timezone', 0))
+        name         = str(request.GET.get('name', 0))
+        longitude    = float(request.GET.get('longitude', 0))
+        width        = float(request.GET.get('width', 0))
+        width_window = float(request.GET.get('width_window', 0))
+        country      = str(request.GET.get('country', 0))
+        city         = str(request.GET.get('city', 0))
+        region       = str(request.GET.get('region', 0))
+        timezone     = str(request.GET.get('timezone', 0))
         obj = CheckLocation.objects.create(name=name, longitude=longitude, width=width, width_window=width_window,
                                            country=country, city=city, region=region, timezone=timezone,
                                            last_activity=datetime.datetime.now())
