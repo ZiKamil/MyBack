@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 import json
+from auth import options
 
 
 @csrf_exempt
@@ -14,6 +15,7 @@ def count_down(request):
         return JsonResponse(model, safe=False)
 
 
+@options(methods=["POST"])
 @csrf_exempt
 def check_location(request):
     if request.method == "POST":
@@ -25,5 +27,7 @@ def check_location(request):
         obj.save()
         obj.refresh_from_db()
         return JsonResponse(obj.to_dict(), safe=False)
+
+
 
 # Create your views here.
