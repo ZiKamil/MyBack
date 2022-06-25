@@ -16,13 +16,17 @@ def count_down(request):
 
 @csrf_exempt
 def check_location(request):
-    if request.method == "POST":
-        req = json.loads(request.body)
-        obj = CheckLocation()
-        for k, v in req.items():
-            setattr(obj, k, v)
-        obj.create_at = datetime.datetime.now()
-        obj.save()
-        obj.refresh_from_db()
+    if request.method == "GET":
+        name = int(request.GET.get('name', 0))
+        longitude = int(request.GET.get('longitude', 0))
+        width = int(request.GET.get('width', 0))
+        width_window = int(request.GET.get('width_window', 0))
+        country = int(request.GET.get('country', 0))
+        city = int(request.GET.get('city', 0))
+        region = int(request.GET.get('region', 0))
+        timezone = int(request.GET.get('timezone', 0))
+        obj = CheckLocation.objects.create(name=name, longitude=longitude, width=width, width_window=width_window,
+                                           country=country, city=city, region=region, timezone=timezone,
+                                           last_activity=datetime.datetime.now())
         return JsonResponse(obj.to_dict(), safe=False)
 
